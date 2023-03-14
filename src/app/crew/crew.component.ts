@@ -20,8 +20,16 @@ export class CrewComponent implements OnInit {
   ngOnInit() {
   }
   add(name, checked) {
-    let newObject = { name: name, firstMission: checked };
-    this.crew.push(newObject);
+    let exists = false;
+    for (let person of this.crew) {
+      if (name === person["name"]) {
+        exists = true;
+      }
+    }
+    if (!exists) {
+      let newObject = { name: name, firstMission: checked };
+      this.crew.push(newObject);
+    }
   }
   remove(person) {
     let index = this.crew.indexOf(person);
